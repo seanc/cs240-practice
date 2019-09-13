@@ -40,10 +40,12 @@ vector<string> parseColorRow (vector<string> row) {
 				}
 
 				if (occurences >= 3) {
+					// Replace subset with random sequence
 					for (int j = firstOccurenceIndex; j <= index; j++) {
 						row[j] = randomColor();
 					}
 
+					// Restart parsing from initial detection of sequence
 					index = firstOccurenceIndex;
 					occurences = 0;
 				}

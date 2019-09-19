@@ -9,14 +9,37 @@ void printRow (string title, vector<string> row) {
 	string rowString = "";
 	for (const auto &piece : row) rowString += piece + " ";
 
-	cout << title << ": " << endl << rowString << endl;
+	cout << title << ": " << endl << "1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16" << endl << rowString << endl;
 }
 
 string randomColor () {
 	const char* colors[] = {"R", "G", "B", "O", "P"};
-	string color = colors[rand() % 5];
+	int index = rand() % 5;
+	string color = colors[index];
 	
 	return color; 
+}
+
+vector<string> randomColorRow () {
+	vector<string> colors;
+	for (int i = 0; i <= 15; i++) {
+		colors.push_back(randomColor() + " ");
+	}
+
+	return colors;
+}
+
+void askSwap () {
+	int swapFromIndex = 0;
+	int swapToIndex = 0;
+
+	cout << "Enter an index to swap from (1-10):" << endl;
+	cin >> swapFromIndex;
+
+	cout << "Enter an index to swap to (1-10):" << endl;
+	cin >> swapToIndex;
+	
+	// TODO: check if selected indices are larger than the vector size
 }
 
 vector<string> parseColorRow (vector<string> row) {
@@ -61,9 +84,12 @@ vector<string> parseColorRow (vector<string> row) {
 }
 
 int main () {
-	vector<string> row{"R", "R", "R", "G", "B", "R", "R", "R", "P", "O", "O", "O", "O", "O", "G", "G", "G", "A", "B", "B", "B", "G", "G", "B", "B", "B"};
-	vector<string> parsedRow = parseColorRow(row);
+	srand(time(0)); 
 
-	printRow("Original Row", row);
-	printRow("Parsed Row", parsedRow);
+	vector<string> startRow = randomColorRow();
+	// vector<string> row{"R", "R", "R", "R", "R", "R", "B", "G", "B", "R", "R", "R", "R", "R", "P", "O", "O", "O", "O", "O", "G", "G", "G", "A", "B", "B", "B", "G", "G", "B", "B", "B"};
+	// vector<string> parsedRow = parseColorRow(row);
+
+	printRow("Original Row", startRow);
+	// printRow("Parsed Row", parsedRow);
 }
